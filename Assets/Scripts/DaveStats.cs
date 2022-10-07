@@ -28,7 +28,7 @@ public class DaveStats : MonoBehaviour
     }
     void OnTriggerEnter2D(Collider2D col)
     {
-        if(col.name == "Enemy" & onHitInvincibleFrames == 0){
+        if(col.name == "Enemy" & onHitInvincibleFrames == 0 & gameObject.GetComponent<Movement2DSide>().dodgeTimer == 0){
             //Debug.Log("collision detected");
             daveHealth--;
             onHitInvincibleFrames = 240;
