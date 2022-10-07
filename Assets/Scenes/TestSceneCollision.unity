@@ -282,6 +282,7 @@ GameObject:
   - component: {fileID: 796689097}
   - component: {fileID: 796689099}
   - component: {fileID: 796689098}
+  - component: {fileID: 796689100}
   m_Layer: 0
   m_Name: Dave
   m_TagString: Untagged
@@ -429,6 +430,19 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
+--- !u!114 &796689100
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 796689093}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fac2dbf6c44389d47874ddc02231bf48, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  daveHealth: 2
 --- !u!1 &1298722554
 GameObject:
   m_ObjectHideFlags: 0
@@ -1370,7 +1384,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}

@@ -32,19 +32,24 @@ public class Movement2DSide : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // keys/joysticks for inputs can be managed in Edit > Project Settings > Input Manager
-        float x = Input.GetAxisRaw("Horizontal");
-        float y = Input.GetAxisRaw("Vertical");
-        anim.SetInteger("x", Mathf.CeilToInt(x));
-        anim.SetInteger("y", Mathf.CeilToInt(y));
-        // movement
-        if(Input.GetKey("left shift")){
-            rb.velocity = new Vector2(x * speed * 2, y * speed * 2);
+        if(gameObject.GetComponent<DaveStats>().daveHealth == 0){
+            anim.gameObject.GetComponent<Animator>().enabled = false;
+            rb.velocity = new Vector2(0,0);
         }
         else{
-            rb.velocity = new Vector2(x * speed, y * speed);
+            // keys/joysticks for inputs can be managed in Edit > Project Settings > Input Manager
+            float x = Input.GetAxisRaw("Horizontal");
+            float y = Input.GetAxisRaw("Vertical");
+            anim.SetInteger("x", Mathf.CeilToInt(x));
+            anim.SetInteger("y", Mathf.CeilToInt(y));
+            // movement
+            if(Input.GetKey("left shift")){
+                rb.velocity = new Vector2(x * speed * 2, y * speed * 2);
+            }
+            else{
+                rb.velocity = new Vector2(x * speed, y * speed);
+            }
         }
-        
 
         
         
