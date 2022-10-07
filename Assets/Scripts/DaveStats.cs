@@ -33,5 +33,9 @@ public class DaveStats : MonoBehaviour
             daveHealth--;
             onHitInvincibleFrames = 240;
         }
+        if(col.tag == "HealthPickup"){ // Health pickup triggers and is deleted
+            daveHealth++;
+            Destroy(col.gameObject);
+        }
     }
 }
