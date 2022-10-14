@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class DaveStats : MonoBehaviour
 {
-    [Range (0, 10)]
+    [Range (0, 100)]
     public int daveHealth;
     int onHitInvincibleFrames;
     
@@ -28,14 +28,19 @@ public class DaveStats : MonoBehaviour
     }
     void OnTriggerEnter2D(Collider2D col)
     {
-        if(col.name == "Enemy" & onHitInvincibleFrames == 0 & gameObject.GetComponent<Movement2DSide>().dodgeTimer == 0){
+        /*if(col.tag == "Enemy" & onHitInvincibleFrames == 0 & gameObject.GetComponent<Movement2DSide>().dodgeTimer == 0){
             //Debug.Log("collision detected");
-            daveHealth--;
+            GameObject enemy = col.gameObject;
+            //int damage = enemy.GetComponent<>();
+            daveHealth = daveHealth - damage;
             onHitInvincibleFrames = 240;
-        }
+        }*/
         if(col.tag == "HealthPickup"){ // Health pickup triggers and is deleted
             daveHealth++;
             Destroy(col.gameObject);
         }
+    }
+    public void DaveHit(int dmg){
+        daveHealth = daveHealth - dmg;
     }
 }
