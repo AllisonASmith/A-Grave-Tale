@@ -6,12 +6,14 @@ public class DaveStats : MonoBehaviour
 {
     [Range (0, 100)]
     public int daveHealth;
+    public int daveMaxHealth = 100;
     int onHitInvincibleFrames;
-    
+
     // Start is called before the first frame update
     void Start()
     {
         onHitInvincibleFrames = 0;
+        
     }
 
     // Update is called once per frame
@@ -22,6 +24,7 @@ public class DaveStats : MonoBehaviour
             //Debug.Log("Invincible");
             onHitInvincibleFrames--;
         }
+
         //if(daveHealth == 0){
             //Debug.Log("dead");
         //}
@@ -36,8 +39,18 @@ public class DaveStats : MonoBehaviour
             onHitInvincibleFrames = 240;
         }*/
         if(col.tag == "HealthPickup"){ // Health pickup triggers and is deleted
-            daveHealth++;
-            Destroy(col.gameObject);
+            if(daveHealth == daveMaxHealth){
+                // Does nothing, but doesn't destroy the heart pickup
+            }
+            else if(daveHealth + 10 > daveMaxHealth){
+                daveHealth = daveMaxHealth;
+                Destroy(col.gameObject);
+            }
+            else{
+                daveHealth = daveHealth + 10;
+                Destroy(col.gameObject);
+            }
+            
         }
     }
     public void DaveHit(int dmg){
