@@ -11,15 +11,15 @@ public class DungeonGen : MonoBehaviour
     public TileBase[] refSet;
     void Start()
     {
-        // generates 10 tiles between ([1-10), [1-10))
+        // test components. generates a box and random branch with walls
         t = GetComponent<Tilemap>();
-        for (int i = 0; i < 10; i++)
-        {
-            generateBox(5, 5, Vector3Int.zero, Vector3Int.right);//t.SetTile(new Vector3Int(Random.Range(1, 10), Random.Range(1, 10), 0), t.GetTile(new Vector3Int(1,0)));//Vector3Int.zero));
-        }
+        Vector3Int position = Vector3Int.zero;
+        position = generateBox(5, 5, Vector3Int.zero, Vector3Int.right);
+        position = generateBlob(30, new Vector3Int(position.x - 1, position.y - 1), 0, 7);
     }
-    void generateBox(int width, int height, Vector3Int start, Vector3Int door) {
+    Vector3Int generateBox(int width, int height, Vector3Int start, Vector3Int door) {
         // creates a room box of size (width, height) with the anchor position (bottom left corner) start and doorway position door
+        // returns height/width corner
         for (int i = 0; i < width; i++) {
             for (int j = 0; j < height; j++) {
                 // sets grass/path (temp)
@@ -29,5 +29,45 @@ public class DungeonGen : MonoBehaviour
         }
         // sets cobblestone (temp)
         t.SetTile(door, refSet[6]);
+        return new Vector3Int(start.x + width, start.y + height);
+    }
+    Vector3Int generateBlob(int distance, Vector3Int start, int type1, int type2) {
+        // creates a random blob/branch
+        // distance = how many tiles generate, start = starting position, type1 = material generated on the floor, type2 = material generated as walls
+        Vector3Int position = start;
+        int fails = 0; // backup if a different route can't be found
+        while (distance > 0) {
+            int x = 0;
+            int y = 0;
+            if (Random.Range(0, 2) == 1) x = Random.Range(-1, 2);
+            else y = Random.Range(-1, 2);
+            // generate tile, currently overrides other floor tiles and anything adjacent to this. EDIT LATER
+            if (t.GetTile(new Vector3Int(position.x + x, position.y + y)) != refSet[type1])
+            {
+                position = new Vector3Int(position.x + x, position.y + y);
+                t.SetTile(position, refSet[type1]);
+                // add walls. this is a bit... much, so edit and optimize if desired
+                if (t.GetTile(new Vector3Int(position.x + 1, position.y)) == null) t.SetTile(new Vector3Int(position.x + 1, position.y), refSet[type2]);
+                if (t.GetTile(new Vector3Int(position.x, position.y + 1)) == null) t.SetTile(new Vector3Int(position.x, position.y + 1), refSet[type2]);
+                if (t.GetTile(new Vector3Int(position.x + 1, position.y + 1)) == null) t.SetTile(new Vector3Int(position.x + 1, position.y + 1), refSet[type2]);
+                if (t.GetTile(new Vector3Int(position.x - 1, position.y)) == null) t.SetTile(new Vector3Int(position.x - 1, position.y), refSet[type2]);
+                if (t.GetTile(new Vector3Int(position.x, position.y - 1)) == null) t.SetTile(new Vector3Int(position.x, position.y - 1), refSet[type2]);
+                if (t.GetTile(new Vector3Int(position.x - 1, position.y - 1)) == null) t.SetTile(new Vector3Int(position.x - 1, position.y - 1), refSet[type2]);
+                if (t.GetTile(new Vector3Int(position.x + 1, position.y - 1)) == null) t.SetTile(new Vector3Int(position.x + 1, position.y - 1), refSet[type2]);
+                if (t.GetTile(new Vector3Int(position.x - 1, position.y + 1)) == null) t.SetTile(new Vector3Int(position.x - 1, position.y + 1), refSet[type2]);
+                distance--;
+                fails = 0;
+            }
+            else fails++;
+            // if enough fails on the current path, reset to a random path
+            if (fails == 10)
+            {
+                x = Random.Range(start.x, position.x);
+                y = Random.Range(start.y, position.y);
+            }
+            //too many fails, end generation
+            else if (fails >= 100) break;
+        }
+        return position;
     }
 }
