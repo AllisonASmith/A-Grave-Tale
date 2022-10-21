@@ -18,7 +18,7 @@ public class Test_Dialogue : MonoBehaviour
     }
     void OnTriggerEnter2D(Collider2D col){ // Dave talks to person
         if(col.name == "Dave"){
-            di.DisplayDialogue("Test Man");
+            di.DisplayDialogue("Testing time", "Test Man");
         }
     }
     void OnTriggerExit2D(Collider2D col){

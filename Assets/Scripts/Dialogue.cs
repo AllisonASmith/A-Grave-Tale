@@ -7,6 +7,7 @@ public class Dialogue : MonoBehaviour
 {
     // Start is called before the first frame update
     public Text txt;
+    public Text nme;
     void Start()
     {
         gameObject.SetActive(false);
@@ -17,9 +18,10 @@ public class Dialogue : MonoBehaviour
     {
         //gameObject.SetActive(false);
     }
-    public void DisplayDialogue(string dialogue){
+    public void DisplayDialogue(string dialogue, string name){
         gameObject.SetActive(true);
         txt.text = dialogue;
+        nme.text = name;
     }
     public void EndDialogue(){
         gameObject.SetActive(false);
