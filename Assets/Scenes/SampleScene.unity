@@ -579,6 +579,7 @@ GameObject:
   - component: {fileID: 796689097}
   - component: {fileID: 796689099}
   - component: {fileID: 796689098}
+  - component: {fileID: 796689100}
   m_Layer: 0
   m_Name: Dave
   m_TagString: Untagged
@@ -727,6 +728,33 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
+--- !u!114 &796689100
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 796689093}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fac2dbf6c44389d47874ddc02231bf48, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _daveHealth: 100
+  _daveMana: 100
+  _daveEnergy: 100
+  daveMaxHealth: 100
+  daveMaxMana: 100
+  daveMaxEnergy: 100
+  onHealthChange:
+    m_PersistentCalls:
+      m_Calls: []
+  onManaChange:
+    m_PersistentCalls:
+      m_Calls: []
+  onEnergyChange:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &832641061
 GameObject:
   m_ObjectHideFlags: 0
@@ -1656,6 +1684,7 @@ GameObject:
   - component: {fileID: 1634611046}
   - component: {fileID: 1634611045}
   - component: {fileID: 1634611049}
+  - component: {fileID: 1634611050}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -1773,6 +1802,22 @@ MonoBehaviour:
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
+--- !u!114 &1634611050
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1634611044}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6c1e0ff483d84abc9fdfeef15a9f2bb4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  daveStats: {fileID: 796689100}
+  healthFillImage: {fileID: 373357491}
+  manaFillImage: {fileID: 1090662175}
+  energyFillImage: {fileID: 376570143}
 --- !u!1 &1902059337
 GameObject:
   m_ObjectHideFlags: 0
@@ -1925,7 +1970,7 @@ GameObject:
   - component: {fileID: 2129326083}
   m_Layer: 0
   m_Name: Enemy
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2021,6 +2066,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   framesToMove: 0
+  dmg: 0
 --- !u!50 &2129326083
 Rigidbody2D:
   serializedVersion: 4

@@ -1,19 +1,70 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class DaveStats : MonoBehaviour
 {
-    [Range (0, 100)]
-    public int daveHealth;
+    [SerializeField]
+    [Range(0, 100)]
+    private int _daveHealth;
+    [SerializeField]
+    [Range(0, 100)]
+    private int _daveMana;
+    [SerializeField]
+    [Range(0, 100)]
+    private int _daveEnergy;
+    
+    // Use these fields in the actual code
+    // These fields will automatically trigger the appropriate event when they're changed
+    public int daveHealth
+    {
+        get => _daveHealth;
+        set
+        {
+            _daveHealth = value;
+            onHealthChange?.Invoke((float)_daveHealth/daveMaxHealth);
+        }
+    }
+
+    public int daveMana
+    {
+        get => _daveMana;
+        set
+        {
+            _daveMana = value;
+            onManaChange?.Invoke((float)_daveMana/daveMaxMana);
+        }
+    }
+
+    public int daveEnergy
+    {
+        get => _daveEnergy;
+        set
+        {
+            _daveEnergy = value;
+            onEnergyChange?.Invoke((float)_daveEnergy/daveMaxEnergy);
+        }
+    }
+    
     public int daveMaxHealth = 100;
+    public int daveMaxMana = 100;
+    public int daveMaxEnergy = 100;
+
+    [HideInInspector]
+    public UnityEvent<float> onHealthChange;
+    [HideInInspector]
+    public UnityEvent<float> onManaChange;
+    [HideInInspector]
+    public UnityEvent<float> onEnergyChange;
+    
     int onHitInvincibleFrames;
 
     // Start is called before the first frame update
     void Start()
     {
         onHitInvincibleFrames = 0;
-        
     }
 
     // Update is called once per frame
