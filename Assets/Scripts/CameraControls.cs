@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CameraControls : MonoBehaviour
 {
-    public GameObject target; // the focus for the camera
+    public static GameObject target; // the focus for the camera
     public bool isSmoothed; // true if the camera isn't directly following a player or enemy -- works best on a static target
  
     void Update()

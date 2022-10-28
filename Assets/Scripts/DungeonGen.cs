@@ -9,27 +9,56 @@ public class DungeonGen : MonoBehaviour
     Tilemap t;
     [SerializeField]
     public TileBase[] refSet;
+    public GameObject temp; // prefab for room positions
     void Start()
     {
+
+        // need to add way to track player - probably new script
+        // CameraControls.target = temp;
+
         // test components. generates a box and random branch with walls
         t = GetComponent<Tilemap>();
+        Vector3Int[] positions = new Vector3Int[3];
         Vector3Int position = Vector3Int.zero;
-        position = generateBox(5, 5, Vector3Int.zero, Vector3Int.right);
-        position = generateBlob(30, new Vector3Int(position.x - 1, position.y - 1), 0, 7);
+        positions = generateBox(10, 10, position);
+        for (int i = 0; i < positions.Length; i++) {
+            if (positions[i] != null) {
+                position = positions[i];
+                //position = 
+                generateBlob(30, new Vector3Int(position.x, position.y), 0, 7);
+            }
+        }
+        //position = generateBlob(30, new Vector3Int(position.x - 1, position.y - 1), 0, 7);
     }
-    Vector3Int generateBox(int width, int height, Vector3Int start, Vector3Int door) {
+    Vector3Int[] generateBox(int width, int height, Vector3Int start){
         // creates a room box of size (width, height) with the anchor position (bottom left corner) start and doorway position door
         // returns height/width corner
+        Vector3Int[] doors = new Vector3Int[3];
         for (int i = 0; i < width; i++) {
             for (int j = 0; j < height; j++) {
                 // sets grass/path (temp)
-                if(i == 0 || j == 0 || i + 1 == width || j + 1 == height) t.SetTile(new Vector3Int(start.x + i, start.y + j), refSet[7]);
-                else t.SetTile(new Vector3Int(start.x + i, start.y + j), refSet[0]);
+                Vector3Int tile = new Vector3Int(start.x + i, start.y + j);
+                if (i == 0 || j == 0 || i + 1 == width || j + 1 == height) t.SetTile(tile, refSet[7]);
+                else t.SetTile(tile, refSet[0]);
             }
         }
-        // sets cobblestone (temp)
-        t.SetTile(door, refSet[6]);
-        return new Vector3Int(start.x + width, start.y + height);
+        // sets door (temp cobblestone)
+        // left door
+        if (Random.Range(0, 10) % 2 == 0) {
+            doors[0] = new Vector3Int(start.x, start.y + Random.Range(1, height - 1));
+            t.SetTile(doors[0], refSet[6]);
+        }       
+        // top door
+        if(Random.Range(0, 10) % 2 == 0) {
+            doors[1] = new Vector3Int(start.x + Random.Range(1, width - 1), start.y + height - 1);
+            t.SetTile(doors[1], refSet[6]);
+        }
+        // right door
+        if (Random.Range(0, 10) % 2 == 0) {
+            doors[2] = new Vector3Int(start.x + width - 1, start.y + Random.Range(1, height - 1));
+            t.SetTile(doors[2], refSet[6]);
+        }   
+        return doors;
     }
     Vector3Int generateBlob(int distance, Vector3Int start, int type1, int type2) {
         // creates a random blob/branch

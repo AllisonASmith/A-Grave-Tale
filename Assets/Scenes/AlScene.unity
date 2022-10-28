@@ -243,7 +243,7 @@ MonoBehaviour:
   speed: 0.5
   atkSpeed: 2
   Friction: 1.75
-  dodgeTimer: 0
+  dodgeTimer: 10
 --- !u!95 &463382935
 Animator:
   serializedVersion: 4
@@ -324,7 +324,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 463382931}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.324, y: -1.834, z: 0}
+  m_LocalPosition: {x: 0.34, y: 0.53, z: 0}
   m_LocalScale: {x: 3, y: 3, z: 3}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -343,7 +343,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fac2dbf6c44389d47874ddc02231bf48, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  daveHealth: 2
+  _daveHealth: 10
+  _daveMana: 10
+  _daveEnergy: 10
+  daveMaxHealth: 100
+  daveMaxMana: 100
+  daveMaxEnergy: 100
+  onHealthChange:
+    m_PersistentCalls:
+      m_Calls: []
+  onManaChange:
+    m_PersistentCalls:
+      m_Calls: []
+  onEnergyChange:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &914974937
 GameObject:
   m_ObjectHideFlags: 0
@@ -375,7 +389,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a050baa5963f98449390ea2d54f755e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 463382931}
   isSmoothed: 0
 --- !u!81 &914974939
 AudioListener:
@@ -442,6 +455,37 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1236970139
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1236970140}
+  m_Layer: 0
+  m_Name: Position
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1236970140
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1236970139}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 3.167852, y: 5.169459, z: -0.5506876}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2044942836
 GameObject:
@@ -651,3 +695,4 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 54942d1f87fcae74cbac26879eaeacc4, type: 2}
   - {fileID: 11400000, guid: fe8e3e6c51c847a4ab9cdeff9dd41d39, type: 2}
   - {fileID: 11400000, guid: b113643648eeed14992d68223a0c3cd1, type: 2}
+  temp: {fileID: 1236970139}
