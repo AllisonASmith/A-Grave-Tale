@@ -440,6 +440,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   txt: {fileID: 546080050}
   nme: {fileID: 1934850788}
+  isTalking: 0
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -784,6 +785,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bdd0cf1f99efc3b4182b3a26276665f7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sr: {fileID: 0}
+  baseTalking: {fileID: 21300000, guid: 86c55585e2a7fe84e9f5295c474e3732, type: 3}
   Scale: 2
   speed: 0.5
   atkSpeed: 2
@@ -838,8 +841,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fac2dbf6c44389d47874ddc02231bf48, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  daveHealth: 100
+  _daveHealth: 100
+  _daveMana: 100
+  _daveEnergy: 100
   daveMaxHealth: 100
+  daveMaxMana: 100
+  daveMaxEnergy: 100
+  onHealthChange:
+    m_PersistentCalls:
+      m_Calls: []
+  onManaChange:
+    m_PersistentCalls:
+      m_Calls: []
+  onEnergyChange:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &874830800
 GameObject:
   m_ObjectHideFlags: 0
@@ -1930,11 +1946,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 1458110791}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fa6bc81f58fddc1429f4ab6523f2de8d, type: 3}
+  m_Script: {fileID: 11500000, guid: 6c1e0ff483d84abc9fdfeef15a9f2bb4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hpBar: {fileID: 1458110793}
-  dave: {fileID: 796689093}
+  daveStats: {fileID: 796689100}
+  healthFillImage: {fileID: 1458110793}
+  manaFillImage: {fileID: 1688747708}
+  energyFillImage: {fileID: 1855564249}
 --- !u!1 &1688747706
 GameObject:
   m_ObjectHideFlags: 0

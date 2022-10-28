@@ -8,7 +8,9 @@ public class Movement2DSide : MonoBehaviour
     // player components
     Rigidbody2D rb; // physics and collision
     Animator anim; // animation
-    SpriteRenderer sr; // base sprite
+    public SpriteRenderer sr; // base sprite
+    DialogueScript di;
+    public Sprite baseTalking;
 
     public float Scale; //scale of the game (affects speed, later attack speed)
     [Range (0,1)]
@@ -27,6 +29,7 @@ public class Movement2DSide : MonoBehaviour
         sr = GetComponent<SpriteRenderer>();
         anim = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
+        di = FindObjectOfType<DialogueScript>();
         speed *= Scale;
         speed *= atkSpeed;
         dodgeCooldown = 0;
@@ -39,18 +42,24 @@ public class Movement2DSide : MonoBehaviour
         if(dodgeCooldown > 0){
             dodgeCooldown--;
         }
-        if(gameObject.GetComponent<DaveStats>().daveHealth == 0){
-            anim.gameObject.GetComponent<Animator>().enabled = false;
+        //Debug.Log(di.GetComponent<DialogueScript>().isTalking);
+        // Stops animation when Dave dies or talks to someone
+        if(gameObject.GetComponent<DaveStats>().daveHealth == 0 || di.GetComponent<DialogueScript>().isTalking){
             rb.velocity = new Vector2(0,0);
+            anim.gameObject.GetComponent<Animator>().enabled = false;
+            sr.sprite = baseTalking;
+            //sr.gameObject.GetComponent<SpriteRenderer>().enabled = false;
         }
         else{
+            anim.gameObject.GetComponent<Animator>().enabled = true;
+            sr.gameObject.GetComponent<SpriteRenderer>().enabled = true;
             // keys/joysticks for inputs can be managed in Edit > Project Settings > Input Manager
             float x = Input.GetAxisRaw("Horizontal");
             float y = Input.GetAxisRaw("Vertical");
             anim.SetInteger("x", Mathf.CeilToInt(x));
             anim.SetInteger("y", Mathf.CeilToInt(y));
             // movement
-            if(Input.GetKey("space") & dodgeCooldown == 0){ //Dodging
+            if(Input.GetKeyDown("space") & dodgeCooldown == 0){ //Dodging
                 //Debug.Log("Dodge begin");
                 dodgeTimer = 240;
                 dodgeCooldown = 2400;
