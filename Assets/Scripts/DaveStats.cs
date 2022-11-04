@@ -107,4 +107,9 @@ public class DaveStats : MonoBehaviour
     public void DaveHit(int dmg){
         daveHealth = daveHealth - dmg;
     }
+    public void DaveHeal(){
+        daveHealth = daveMaxHealth;
+        daveEnergy = daveMaxEnergy;
+        daveMana = daveMaxMana;
+    }
 }

@@ -10,6 +10,7 @@ public class DialogueScript : MonoBehaviour
     public Text nme;
     public bool isTalking;
     private GameObject textBox;
+    private GameObject confirm;
     private GameObject dialogue;
     public string[] dial;
     public string nam;
@@ -20,7 +21,9 @@ public class DialogueScript : MonoBehaviour
         isTalking = false;
         dialogue = GameObject.Find("Dialogue");
         textBox = dialogue.transform.GetChild(0).gameObject;
+        confirm = dialogue.transform.GetChild(3).gameObject;
         textBox.SetActive(false);
+        confirm.SetActive(false);
         //gameObject.SetActive(false);
     }
 
@@ -30,11 +33,12 @@ public class DialogueScript : MonoBehaviour
         // Loop through dialogue array
         if(isTalking == true){
             //Debug.Log(dialNum);
-            if(Input.GetKeyDown("space") && dialNum < dial.Length){
+            if(Input.GetButtonDown("Submit") && dialNum < dial.Length){
+                //Debug.Log("print out here");
                 txt.text = dial[dialNum];
                 dialNum++;
             }
-            else if(Input.GetKeyDown("space") && dialNum == dial.Length){
+            else if(Input.GetButtonDown("Submit") && dialNum == dial.Length){
                 EndDialogue();
             }
         }
@@ -45,20 +49,22 @@ public class DialogueScript : MonoBehaviour
         dial = dialogue;
         nam = name;
         textBox.SetActive(true);
-        Debug.Log("print out here");
-        Debug.Log(dialogue.Length);
-        if(dialogue.Length > 1){
-            isTalking = true;
-        }
-        txt.text = dialogue[0];
+        confirm.SetActive(true);
+        //Debug.Log("print out here");
+        //Debug.Log(dialogue.Length);
+        //if(dialogue.Length > 1){
+        isTalking = true;
+        //}
+        //txt.text = dialogue[0];
         nme.text = name;
-        dialNum = 1;
+        dialNum = 0;
     }
     public void EndDialogue(){
-        isTalking = false;
         textBox.SetActive(false);
+        confirm.SetActive(false);
         nme.text = "";
         txt.text = "";
+        isTalking = false;
         //gameObject.SetActive(false);
     }
 
