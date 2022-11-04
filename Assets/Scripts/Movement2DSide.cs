@@ -21,6 +21,8 @@ public class Movement2DSide : MonoBehaviour
     public float Friction; //stops object on the floor, use 0 for no friction
     int dodgeCooldown; // Number of frames left before a new dodge can be used
     public int dodgeTimer; // Number of frames that a dodge lasts
+    public float dodgeX; // X direction and speed of dodge
+    public float dodgeY; // y direction and speed of dodge
 
 
     // Start is called before the first frame update
@@ -59,16 +61,18 @@ public class Movement2DSide : MonoBehaviour
             anim.SetInteger("x", Mathf.CeilToInt(x));
             anim.SetInteger("y", Mathf.CeilToInt(y));
             // movement
-            if(Input.GetKeyDown("space") & dodgeCooldown == 0){ //Dodging
-                //Debug.Log("Dodge begin");
+            if(Input.GetButtonDown("Dodge") & dodgeCooldown == 0 & di.isTalking == false){ //Dodging, can only occur when not on cooldown and not talking
+                Debug.Log("Dodge begin");
                 dodgeTimer = 240;
                 dodgeCooldown = 2400;
+                dodgeX = x;
+                dodgeY = y;
             }
-            if(dodgeTimer > 0){
-                rb.velocity = new Vector2(x * speed * 3, y * speed * 3);
+            if(dodgeTimer > 0){ // Dodge roll. Set speed that cannot be influenced until dodge is over
+                rb.velocity = new Vector2(dodgeX * speed, dodgeY * speed);
                 dodgeTimer--;
             }
-            else if(Input.GetKey("left shift")){ //Sprinting
+            else if(Input.GetButton("Sprint")){ //Sprinting
                 rb.velocity = new Vector2(x * speed * 2, y * speed * 2);
             }
             else{
