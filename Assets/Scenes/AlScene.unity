@@ -239,6 +239,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bdd0cf1f99efc3b4182b3a26276665f7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sr: {fileID: 0}
+  baseTalking: {fileID: 0}
   Scale: 2
   speed: 0.5
   atkSpeed: 2
@@ -389,6 +391,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a050baa5963f98449390ea2d54f755e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Dave: {fileID: 463382931}
   isSmoothed: 0
 --- !u!81 &914974939
 AudioListener:

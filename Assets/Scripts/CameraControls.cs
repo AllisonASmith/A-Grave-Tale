@@ -5,8 +5,13 @@ using UnityEngine;
 public class CameraControls : MonoBehaviour
 {
     public static GameObject target; // the focus for the camera
+    [SerializeField]
+    public GameObject Dave;// player
     public bool isSmoothed; // true if the camera isn't directly following a player or enemy -- works best on a static target
- 
+    private void Start()
+    {
+        target = Dave; // dave is the default target in each scene
+    }
     void Update()
     {
         // if smooth, camera will lerp to target position
