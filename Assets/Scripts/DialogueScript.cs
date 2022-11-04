@@ -10,6 +10,7 @@ public class DialogueScript : MonoBehaviour
     public Text nme;
     public bool isTalking;
     private GameObject textBox;
+    private GameObject confirm;
     private GameObject dialogue;
     public string[] dial;
     public string nam;
@@ -20,7 +21,9 @@ public class DialogueScript : MonoBehaviour
         isTalking = false;
         dialogue = GameObject.Find("Dialogue");
         textBox = dialogue.transform.GetChild(0).gameObject;
+        confirm = dialogue.transform.GetChild(3).gameObject;
         textBox.SetActive(false);
+        confirm.SetActive(false);
         //gameObject.SetActive(false);
     }
 
@@ -46,6 +49,7 @@ public class DialogueScript : MonoBehaviour
         dial = dialogue;
         nam = name;
         textBox.SetActive(true);
+        confirm.SetActive(true);
         //Debug.Log("print out here");
         //Debug.Log(dialogue.Length);
         //if(dialogue.Length > 1){
@@ -57,6 +61,7 @@ public class DialogueScript : MonoBehaviour
     }
     public void EndDialogue(){
         textBox.SetActive(false);
+        confirm.SetActive(false);
         nme.text = "";
         txt.text = "";
         isTalking = false;
