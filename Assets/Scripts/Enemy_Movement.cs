@@ -15,9 +15,12 @@ public class Enemy_Movement : MonoBehaviour
     DaveStats ds; // Reference to DaveStats script
     EnemyStats bt; // Reference to EnemyStats script
     //public Enemy bat;
+    public GameObject DroppedHealthPickup;
+    public GameObject bat;
     public float framesToMove = 0;
     //Enemy stats = new Enemy();
     public int dmg;
+    public int HP;
     // Start is called before the first frame update
     void Start()
     {
@@ -30,6 +33,7 @@ public class Enemy_Movement : MonoBehaviour
         ds = FindObjectOfType<DaveStats>();
         //stats = gameObject.GetComponent<EnemyStats>().getEnemy("bat");
         dmg = bt.getDamage("bat"); // Gets the damage value of the enemy
+        HP = bt.getMaxHP("bat"); // Gets max hp
         //Debug.Log(dmg);
     }
      
@@ -64,7 +68,16 @@ public class Enemy_Movement : MonoBehaviour
     }
     void OnTriggerEnter2D(Collider2D col){ // Damage Dave
         if(col.name == "Dave"){
-            ds.DaveHit(dmg);
+            if(Input.GetButton("Fire1")){ // Test interaction with dave attacking
+                HP = HP - ds.daveDamage;
+                if(HP <= 0){ // Dies
+                    Instantiate(DroppedHealthPickup, bat.transform.position, bat.transform.rotation); // Drops a health pickup by cloning a health pickup that is outside of the map
+                    Destroy(bat);
+                }
+            }
+            else{
+                ds.DaveHit(dmg);
+            }
         }
     }
 }

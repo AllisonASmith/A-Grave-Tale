@@ -12,7 +12,7 @@ public class EnemyStats : MonoBehaviour
     }
 
     public static Enemy[] enemies = new Enemy[]{
-        new Enemy() {name = "bat", damage = 10, max_health = 40}
+        new Enemy() {name = "bat", damage = 10, max_health = 10}
     };
     
 
@@ -33,6 +33,21 @@ public class EnemyStats : MonoBehaviour
                 //Debug.Log(i.damage);
                 //Debug.Log(i.max_health);
                 return i.damage;
+            }
+        }
+        Debug.Log("Attempted to reference a non-existent enemy");
+        return 0;
+    }
+    public int getMaxHP(string enName){
+        foreach(Enemy i in enemies){
+                /*Debug.Log(i.name);
+                Debug.Log(i.damage);
+                Debug.Log(i.max_health);*/
+            if(i.name == enName){
+                //Debug.Log(i.name);
+                //Debug.Log(i.damage);
+                //Debug.Log(i.max_health);
+                return i.max_health;
             }
         }
         Debug.Log("Attempted to reference a non-existent enemy");

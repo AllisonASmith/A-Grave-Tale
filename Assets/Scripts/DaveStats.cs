@@ -15,6 +15,9 @@ public class DaveStats : MonoBehaviour
     [SerializeField]
     [Range(0, 100)]
     private int _daveEnergy;
+    [SerializeField]
+    [Range(0, 100)]
+    private int _daveDamage;
     
     // Use these fields in the actual code
     // These fields will automatically trigger the appropriate event when they're changed
@@ -45,6 +48,15 @@ public class DaveStats : MonoBehaviour
         {
             _daveEnergy = value;
             onEnergyChange?.Invoke((float)_daveEnergy/daveMaxEnergy);
+        }
+    }
+
+    public int daveDamage
+    {
+        get => _daveDamage;
+        set
+        {
+            _daveDamage = value;
         }
     }
     
