@@ -42,7 +42,7 @@ public class DungeonGen : MonoBehaviour
                 else t.SetTile(tile, refSet[0]);
             }
         }
-        // sets door (temp cobblestone)
+        // sets door (temp sand)
         // left door
         if (Random.Range(0, 10) % 2 == 0) {
             doors[0] = new Vector3Int(start.x, start.y + Random.Range(1, height - 1));
@@ -65,6 +65,7 @@ public class DungeonGen : MonoBehaviour
         // distance = how many tiles generate, start = starting position, type1 = material generated on the floor, type2 = material generated as walls
         Vector3Int position = start;
         int fails = 0; // backup if a different route can't be found
+        
         while (distance > 0) {
             int x = 0;
             int y = 0;
