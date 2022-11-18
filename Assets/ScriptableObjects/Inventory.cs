@@ -1,16 +1,27 @@
 using System;
-using UnityEngine;
 using System.Collections.Generic;
+using UnityEngine;
 
-[Serializable]
-public class InventoryEntry
+namespace ScriptableObjects
 {
-    public ItemScriptableObject item;
-    public int amount;
-}
-
-[CreateAssetMenu(fileName = "NewInventory", menuName = "ScriptableObjects/Inventory", order = 0)]
-public class Inventory : ScriptableObject
-{
-    public List<InventoryEntry> items;
+    [Serializable]
+    public class InventoryEntry
+    {
+        public ItemScriptableObject item;
+        public int amount;
+        public bool canDrop;
+    }
+    
+    [Serializable]
+    public class CoreInventoryEntry
+    {
+        public ItemScriptableObject item;
+    }
+    
+    [CreateAssetMenu(fileName = "NewInventory", menuName = "ScriptableObjects/Inventory", order = 0)]
+    public class Inventory : ScriptableObject
+    {
+        public List<CoreInventoryEntry> coreItems;
+        public List<InventoryEntry> items;
+    }
 }
