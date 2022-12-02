@@ -62,25 +62,34 @@ public class Movement2DSide : MonoBehaviour
             anim.SetInteger("y", Mathf.CeilToInt(y));
             // movement
             if(Input.GetButtonDown("Dodge") & dodgeCooldown == 0 & di.isTalking == false){ //Dodging, can only occur when not on cooldown and not talking
-                Debug.Log("Dodge begin");
-                dodgeTimer = 240;
-                dodgeCooldown = 2400;
+                // TEMP FOR DEMO set to teleport dodge
+                Debug.Log("Dodge");
+                //dodgeTimer = 240;
+                dodgeCooldown = 1000; // reduced from 2400
                 dodgeX = x;
                 dodgeY = y;
+                transform.position = new Vector2(transform.position.x + (speed * x), transform.position.y + (speed * y));
+                StartCoroutine(smoothCam());
             }
-            if(dodgeTimer > 0){ // Dodge roll. Set speed that cannot be influenced until dodge is over
+            /*if(dodgeTimer > 0){ // Dodge roll. Set speed that cannot be influenced until dodge is over
                 rb.velocity = new Vector2(dodgeX * speed, dodgeY * speed);
                 dodgeTimer--;
             }
-            else if(Input.GetButton("Sprint")){ //Sprinting
+            else*/ if(Input.GetButton("Sprint")){ //Sprinting
                 rb.velocity = new Vector2(x * speed * 2, y * speed * 2);
             }
             else{
                 rb.velocity = new Vector2(x * speed, y * speed);
             }
-        }
-
+        }  
+    }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
         
-        
+    }
+    IEnumerator smoothCam() {
+        CameraControls.isSmoothed = true;
+        yield return new WaitForSeconds(1);
+        CameraControls.isSmoothed = false;
     }
 }
