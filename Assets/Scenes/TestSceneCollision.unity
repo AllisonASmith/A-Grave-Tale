@@ -3118,9 +3118,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   DroppedHealthPickup: {fileID: 1166793179}
   bat: {fileID: 2129326078}
+  Dave: {fileID: 796689093}
   framesToMove: 0
   dmg: 0
   HP: 0
+  framesStunned: 0
+  swooping: 0
 --- !u!50 &2129326083
 Rigidbody2D:
   serializedVersion: 4
@@ -3331,7 +3334,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.64, y: 0.64}
+    oldSize: {x: 0.63, y: 0.34}
     newSize: {x: 0.64, y: 0.64}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -3381,7 +3384,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 0920a12e70c0a474fb91a494d03c3d85, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 0b94e9c5d61fe4447ac146a3c06230ea, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -3426,6 +3429,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   DroppedHealthPickup: {fileID: 1166793179}
   bat: {fileID: 2146404977}
+  Dave: {fileID: 796689093}
   framesToMove: 0
   dmg: 0
   HP: 0
+  framesStunned: 0
+  swooping: 0

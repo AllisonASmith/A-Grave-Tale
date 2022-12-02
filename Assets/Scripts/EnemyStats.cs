@@ -12,8 +12,8 @@ public class EnemyStats : MonoBehaviour
     }
 
     public static Enemy[] enemies = new Enemy[]{
-        new Enemy() {name = "bat1", damage = 10, max_health = 10},
-        new Enemy() {name = "bat2", damage = 10, max_health = 10}
+        new Enemy() {name = "bat1", damage = 10, max_health = 20},
+        new Enemy() {name = "bat2", damage = 10, max_health = 20}
     };
 
     public GameObject Bat1;
