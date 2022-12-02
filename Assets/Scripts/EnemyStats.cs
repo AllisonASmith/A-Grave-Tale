@@ -12,15 +12,20 @@ public class EnemyStats : MonoBehaviour
     }
 
     public static Enemy[] enemies = new Enemy[]{
-        new Enemy() {name = "bat", damage = 10, max_health = 10}
+        new Enemy() {name = "bat1", damage = 10, max_health = 10},
+        new Enemy() {name = "bat2", damage = 10, max_health = 10}
     };
+
+    public GameObject Bat1;
+    public GameObject Bat2;
     
 
     // Start is called before the first frame update
     void Start()
     {
         //Debug.Log(enemies[0].name);
-        
+        //Instantiate(Bat1, new Vector3(gameObject.transform.position.x, gameObject.transform.position.y, 0), new Quaternion(0, 0, 0, 0));
+        //Instantiate(Bat2, new Vector3(gameObject.transform.position.x, gameObject.transform.position.y, 0), new Quaternion(0, 0, 0, 0));
     }
 
     public int getDamage(string enName){

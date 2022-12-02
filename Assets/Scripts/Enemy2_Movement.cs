@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Enemy_Movement : MonoBehaviour
+public class Enemy2_Movement : MonoBehaviour
 {
     /*public struct Enemy{
         public string name;
@@ -32,8 +32,8 @@ public class Enemy_Movement : MonoBehaviour
         bt = FindObjectOfType<EnemyStats>();
         ds = FindObjectOfType<DaveStats>();
         //stats = gameObject.GetComponent<EnemyStats>().getEnemy("bat");
-        dmg = bt.getDamage("bat1"); // Gets the damage value of the enemy
-        HP = bt.getMaxHP("bat1"); // Gets max hp
+        dmg = bt.getDamage("bat2"); // Gets the damage value of the enemy
+        HP = bt.getMaxHP("bat2"); // Gets max hp
         //Debug.Log(dmg);
     }
      
@@ -45,23 +45,23 @@ public class Enemy_Movement : MonoBehaviour
     void Update()
     {
         // Enemy moves right for 1200 frames, then left for 1200 frames. Patrol mode
-        float x = 0;
+        float y = 0;
         framesToMove++;
         if (framesToMove > 2400)
         {
             framesToMove = 0;
-            x = 1;
+            y = 1;
         }
         else if (framesToMove < 1200)
         {
-            x = 1;
+            y = 1;
         }
         else if(framesToMove >= 1200)
         {
-            x = -1;
+            y = -1;
         }
         
-        float y = 0;
+        float x = 0;
 
         rb.velocity = new Vector2(x * 1, y * 1);
         
