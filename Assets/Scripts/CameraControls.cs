@@ -16,7 +16,6 @@ public class CameraControls : MonoBehaviour
     {
         // if smooth, camera will lerp to target position
         // otherwise camera snaps to target
-        Debug.Log(isSmoothed);
         transform.position = isSmoothed ? Vector3.Lerp(transform.position, new Vector3(target.transform.position.x, target.transform.position.y, -10), .25f) : new Vector3(target.transform.position.x, target.transform.position.y, -10);
     }
 }

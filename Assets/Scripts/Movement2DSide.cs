@@ -23,7 +23,9 @@ public class Movement2DSide : MonoBehaviour
     public int dodgeTimer; // Number of frames that a dodge lasts
     public float dodgeX; // X direction and speed of dodge
     public float dodgeY; // y direction and speed of dodge
+    Vector2 facing; // what direction dave is facing
 
+    public GameObject[] projectile;
 
     // Start is called before the first frame update
     void Start()
@@ -36,6 +38,7 @@ public class Movement2DSide : MonoBehaviour
         speed *= atkSpeed;
         dodgeCooldown = 0;
         dodgeTimer = 0;
+        ProjectileMvt.Dave = this.gameObject;
     }
 
     // Update is called once per frame
@@ -60,6 +63,17 @@ public class Movement2DSide : MonoBehaviour
             float y = Input.GetAxisRaw("Vertical");
             anim.SetInteger("x", Mathf.CeilToInt(x));
             anim.SetInteger("y", Mathf.CeilToInt(y));
+            // rotation/facing
+            // will most likely be replaced by joystick + mouse inputs
+            if (x != 0 && y != 0) facing = new Vector2(x, y);
+            else {
+                if (x != 0) {
+                    facing = new Vector2(x, 0);
+                }
+                if (y != 0) {
+                    facing = new Vector2(0, y);
+                }
+            }
             // movement
             if(Input.GetButtonDown("Dodge") & dodgeCooldown == 0 & di.isTalking == false){ //Dodging, can only occur when not on cooldown and not talking
                 // TEMP FOR DEMO set to teleport dodge
@@ -68,6 +82,7 @@ public class Movement2DSide : MonoBehaviour
                 dodgeCooldown = 1000; // reduced from 2400
                 dodgeX = x;
                 dodgeY = y;
+                // teleports dave and lerps camera
                 transform.position = new Vector2(transform.position.x + (speed * x), transform.position.y + (speed * y));
                 StartCoroutine(smoothCam());
             }
@@ -81,13 +96,21 @@ public class Movement2DSide : MonoBehaviour
             else{
                 rb.velocity = new Vector2(x * speed, y * speed);
             }
+            if (Input.GetMouseButtonDown(0)) {
+                // fire projectile
+                Instantiate(projectile[0], new Vector2(transform.position.x + facing.x, transform.position.y + facing.y), Quaternion.identity);    
+            }
+            else if (Input.GetMouseButtonDown(1)) {
+                // ice projectile
+                Instantiate(projectile[1], new Vector2(transform.position.x + facing.x, transform.position.y + facing.y), Quaternion.identity);
+            }
         }  
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
         
     }
-    IEnumerator smoothCam() {
+    IEnumerator smoothCam() { // changes the smooth funct on the camera for a second (for teleport dodge)
         CameraControls.isSmoothed = true;
         yield return new WaitForSeconds(1);
         CameraControls.isSmoothed = false;

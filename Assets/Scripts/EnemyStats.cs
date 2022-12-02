@@ -58,8 +58,19 @@ public class EnemyStats : MonoBehaviour
         Debug.Log("Attempted to reference a non-existent enemy");
         return 0;
     }
-        
-    
+
+    public void setDamage(string enName, int amount, bool isAdd = false) { // add to or set amount of enemy damage
+        for (int i = 0; i < enemies.Length; i++) {
+            if (enemies[i].name == enName) {
+                enemies[i].damage = isAdd ? enemies[i].damage + amount : amount;
+                if (enemies[i].damage >= enemies[i].max_health) { 
+                    // destroy enemy (gameobject), remove from list
+                }
+                return;
+            }
+        }
+        Debug.Log("Attempted to reference a non-existent enemy");
+    }
 
     // Update is called once per frame
     void Update()
