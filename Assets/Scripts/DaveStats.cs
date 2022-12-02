@@ -117,11 +117,22 @@ public class DaveStats : MonoBehaviour
         }
     }
     public void DaveHit(int dmg){
-        daveHealth = daveHealth - dmg;
+        if(daveHealth > 0){
+            daveHealth = daveHealth - dmg;
+            if(daveHealth <= 0){
+                DaveDie();
+            }
+        }
     }
     public void DaveHeal(){
         daveHealth = daveMaxHealth;
         daveEnergy = daveMaxEnergy;
         daveMana = daveMaxMana;
+    }
+
+    public void DaveDie(){
+        //Can put any death penalties here
+        transform.position = new Vector2(0, 0); // Respawn Dave
+        DaveHeal();
     }
 }
