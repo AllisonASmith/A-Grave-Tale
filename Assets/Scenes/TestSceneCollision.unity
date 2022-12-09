@@ -1045,6 +1045,9 @@ MonoBehaviour:
   dodgeTimer: 0
   dodgeX: 0
   dodgeY: 0
+  projectile:
+  - {fileID: 2808105268289006227, guid: dbf58c59a312a5745a598a6faf1d9884, type: 3}
+  - {fileID: 5851192151798397495, guid: e1378c5ba18185e4199c5a4c862b89d9, type: 3}
 --- !u!70 &796689098
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
