@@ -25,7 +25,7 @@ public class Movement2DSide : MonoBehaviour
     public float dodgeY; // y direction and speed of dodge
     Vector2 facing; // what direction dave is facing
 
-    public GameObject[] projectile;
+   // public GameObject[] projectile;
 
     // Start is called before the first frame update
     void Start()
@@ -98,11 +98,11 @@ public class Movement2DSide : MonoBehaviour
             }
             if (Input.GetMouseButtonDown(0)) {
                 // fire projectile
-                Instantiate(projectile[0], new Vector2(transform.position.x + facing.x, transform.position.y + facing.y), Quaternion.identity);    
+                Instantiate(Resources.Load("Ice Shard"), new Vector2(transform.position.x + facing.x, transform.position.y + facing.y), Quaternion.identity);    
             }
             else if (Input.GetMouseButtonDown(1)) {
                 // ice projectile
-                Instantiate(projectile[1], new Vector2(transform.position.x + facing.x, transform.position.y + facing.y), Quaternion.identity);
+                Instantiate(Resources.Load("Fireball2"), new Vector2(transform.position.x + facing.x, transform.position.y + facing.y), Quaternion.identity);
             }
         }  
     }

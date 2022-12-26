@@ -6,7 +6,7 @@ public class CameraControls : MonoBehaviour
 {
     public static GameObject target; // the focus for the camera
     [SerializeField]
-    public GameObject Dave;// player
+    public GameObject Dave; // player
     public static bool isSmoothed; // true if the camera isn't directly following a player or enemy -- works best on a static target
     private void Start()
     {

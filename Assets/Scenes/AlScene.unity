@@ -368,8 +368,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_Size: {x: 0.31, y: 0.43}
+  m_Offset: {x: -0.0014903545, y: -0.09541657}
+  m_Size: {x: 0.27425718, y: 0.27425718}
   m_Direction: 0
 --- !u!50 &463382933
 Rigidbody2D:
@@ -759,7 +759,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Dave: {fileID: 463382931}
-  isSmoothed: 0
 --- !u!81 &914974939
 AudioListener:
   m_ObjectHideFlags: 0
@@ -1319,6 +1318,9 @@ MonoBehaviour:
   - {fileID: 11400000, guid: b113643648eeed14992d68223a0c3cd1, type: 2}
   - {fileID: 11400000, guid: fe8e3e6c51c847a4ab9cdeff9dd41d39, type: 2}
   temp: {fileID: 1236970139}
+  doors: []
+  directions: []
+  dungeonSize: 12
 --- !u!19719996 &2044942841
 TilemapCollider2D:
   m_ObjectHideFlags: 0

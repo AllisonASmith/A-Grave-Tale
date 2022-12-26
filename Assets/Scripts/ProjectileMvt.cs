@@ -17,10 +17,12 @@ public class ProjectileMvt : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "Enemy") {
+        if (collision.gameObject.tag == "Enemy")
+        {
             //do damage to enemy
-            collision.gameObject.GetComponent<EnemyStats>().setDamage(collision.gameObject.name, 5, true);
+            collision.GetComponentInParent<EnemyManager>().setCurrentHP(collision.gameObject.name, -5, true);
         }
+        else if (collision.gameObject.tag == "HealthPickup") return; // move this to ignore layers
         Destroy(this.gameObject);
     }
 }

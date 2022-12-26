@@ -14,7 +14,7 @@ public class Enemy2_Movement : MonoBehaviour
     Animator anim; // animation
     SpriteRenderer sr; // base sprite
     DaveStats ds; // Reference to DaveStats script
-    EnemyStats bt; // Reference to EnemyStats script
+    EnemyManager bt; // Reference to EnemyStats script
     //public Enemy bat;
     public GameObject DroppedHealthPickup;
     public GameObject bat;
@@ -33,11 +33,11 @@ public class Enemy2_Movement : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         //ds = GetComponent<DaveStats>();
         //bt = GetComponent<EnemyStats>();
-        bt = FindObjectOfType<EnemyStats>();
+        bt = FindObjectOfType<EnemyManager>();
         ds = FindObjectOfType<DaveStats>();
         //stats = gameObject.GetComponent<EnemyStats>().getEnemy("bat");
-        dmg = bt.getDamage("bat2"); // Gets the damage value of the enemy
-        HP = bt.getMaxHP("bat2"); // Gets max hp
+        dmg = bt.getCurrentHP(this.name); // Gets the damage value of the enemy
+        HP = bt.getMaxHP(this.name); // Gets max hp
         //Debug.Log(dmg);
     }
      
